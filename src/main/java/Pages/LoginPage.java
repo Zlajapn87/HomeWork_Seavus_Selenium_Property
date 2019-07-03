@@ -5,6 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 
 public class LoginPage extends BaseClass {
 
@@ -46,6 +51,18 @@ public class LoginPage extends BaseClass {
     public WebElement returnPassField() {
         return field_Password;
     }
+
+    public String readProperty(String prop) throws IOException {
+        Properties property;
+        FileInputStream fs;
+
+        fs = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\DataProviders\\config.Property");
+        property = new Properties();
+        property.load(fs);
+
+        return property.getProperty(prop);
+    };
+
 
 }
 

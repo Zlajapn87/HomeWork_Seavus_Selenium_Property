@@ -11,6 +11,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class Login_InvalidCredentials {
 
     public WebDriver driver;
@@ -37,13 +39,12 @@ public class Login_InvalidCredentials {
     }
 
 
-    @Test(dataProvider = "Invalid credentials", dataProviderClass = LoginCredentialsProvider.class)
-    public void LoginVerification(String email, String password) throws InterruptedException {
+    public void LoginVerification() throws InterruptedException, IOException {
         lPage.loadPage();
-        lPage.setEmail(email);
+        lPage.setEmail(lPage.readProperty("email"));
         lPage.clickOnNextButton();
         lPage.wait.until(ExpectedConditions.elementToBeClickable(lPage.returnPassField()));
-        lPage.setPassword(password);
+        lPage.setPassword(lPage.readProperty("wrongPassword"));
         lPage.clickOnNextPasswordButton();
         Assert.assertTrue(wPage.credentialsCheck());
     }

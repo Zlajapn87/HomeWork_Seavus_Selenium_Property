@@ -10,6 +10,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class Login_ValidCredentials {
 
     public WebDriver driver;
@@ -34,13 +36,13 @@ public class Login_ValidCredentials {
     }
 
 
-    @Test(dataProvider = "Valid credentials", dataProviderClass = LoginCredentialsProvider.class)
-    public void LoginVerification(String email, String password) throws InterruptedException {
+    @Test
+    public void LoginVerification() throws InterruptedException, IOException {
         lPage.loadPage();
-        lPage.setEmail(email);
+        lPage.setEmail(lPage.readProperty("email"));
         lPage.clickOnNextButton();
         lPage.wait.until(ExpectedConditions.elementToBeClickable(lPage.returnPassField()));
-        lPage.setPassword(password);
+        lPage.setPassword(lPage.readProperty("password"));
         lPage.clickOnNextPasswordButton();
         Assert.assertTrue(hPage.credentialsCheck());
     }
