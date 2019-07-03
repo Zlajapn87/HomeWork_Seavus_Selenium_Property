@@ -1,4 +1,3 @@
-import DataProviders.LoginCredentialsProvider;
 import Pages.HomePage;
 import Pages.LoginPage;
 import Pages.WrongCredentialsPage;
@@ -38,7 +37,7 @@ public class Login_InvalidCredentials {
         driver.quit();
     }
 
-
+    @Test
     public void LoginVerification() throws InterruptedException, IOException {
         lPage.loadPage();
         lPage.setEmail(lPage.readProperty("email"));

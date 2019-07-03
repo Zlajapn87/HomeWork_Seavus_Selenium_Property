@@ -1,4 +1,3 @@
-import DataProviders.LoginCredentialsProvider;
 import Pages.HomePage;
 import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
