@@ -2,6 +2,7 @@ import Pages.HomePage;
 import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -21,7 +22,9 @@ public class Login_ValidCredentials {
     @BeforeClass
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/main/Drivers/chromedriver_74.exe");
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        driver = new ChromeDriver(options);
 
         //Page factory
         lPage = PageFactory.initElements(driver, LoginPage.class);
